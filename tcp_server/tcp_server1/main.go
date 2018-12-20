@@ -4,23 +4,23 @@
 package main
 
 import (
-	"net"
-	"log"
 	"fmt"
+	"log"
+	"net"
 	"time"
 )
 
 func handleConn(conn net.Conn) {
 	fmt.Println("Connection from: ", conn.RemoteAddr())
 
-	for x := 0; x < 3 ; x++ {
+	for x := 0; x < 3; x++ {
 		fmt.Fprintf(conn, "Hello World\n")
 		time.Sleep(1 * time.Second)
 	}
 
 	fmt.Fprintf(conn, "Bye\n")
 	conn.Close()
-	
+
 }
 
 func main() {
