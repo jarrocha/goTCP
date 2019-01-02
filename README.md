@@ -4,15 +4,24 @@ This is a collection of small programs written in Golang. These projects are her
 and quick review of concepts. They will eventually increase in functionality and move to their own repository.
 
 ## Table of Contents
+- [Redis Server](#redis-server)
+	- [Brief Analysis](#brief-analysis)
 - [Chat Server](#chat-server)
 	- [Brief Analysis](#brief-analysis)
 	- [Possible Improvements](#possible-improvements)
 	- [Output](#output)
-- [Netcat](#netcat)
-- [Redis Server](#redis-server)
 - [TCP Server](#tcp-server)
+- [Netcat](#netcat)
 
+## Redis Server
+The first version of this server uses a simple approach where each client go about making requests to the database. 
+This database is a global variable which leads to a race condition.
 
+To avoid that, the second version uses a single goroutine to handle database access. Another to start the main program 
+and one for each connecting client. The approach uses channel for synchronization which is the typical approach using Golang. 
+I found it very clever and the uses of channels makes the code very easy to read.
+
+### Brief Analysis
 
 ## Chat Server
 This program presents an interesting approach to using channels and a select statement.
@@ -87,20 +96,6 @@ john:bye
 ```
 
 ## Netcat
-
-
-
-
-
-
-
-
-
-
-
-
-## Redis Server
-
 
 
 
