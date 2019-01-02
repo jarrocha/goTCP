@@ -5,13 +5,13 @@ and quick review of concepts. They will eventually increase in functionality and
 
 ## Table of Contents
 - [Redis Server](#redis-server)
-	- [Redis Server Analysis](#redis-server-analysis)
-	- [Redis Server Possible Improvements](#redis-server-possible-improvements)
-	- [Redis Server Output](#redis-server-output)
+	- [Analysis](#analysis)
+	- [Possible Improvements](#possible-improvements)
+	- [Output](#output)
 - [Chat Server](#chat-server)
-	- [Chat Server Analysis](#chat-server-analysis)
-	- [Chat Server Possible Improvements](#chat-server-possible-improvements)
-	- [Chat Server Output](#chat-server-output)
+	- [Analysis](#analysis-1)
+	- [Possible Improvements](#possible-improvements-1)
+	- [Server Output](#output-1)
 - [TCP Server](#tcp-server)
 - [Netcat](#netcat)
 
