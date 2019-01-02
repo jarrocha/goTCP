@@ -29,7 +29,7 @@ The core of these programs is a string channel shared between the core chat mess
 This channel is used for each client to send a message to be broad casted and also for the system to send broadcasted 
 messages to each user. Each client uses two goroutines, one to wait for input and one to display messages sent by the server.
 
-### Possible Improvement
+### Possible Improvements
 A slow connection from a client can make the server program to get stuck given that it has to wait for a user client to 
 read the message before processing others. It is necessary to create a non-blocking mechanism to send messages and probably 
 to add a buffer too. This will be added to a third version of the server.
