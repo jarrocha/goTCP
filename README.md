@@ -91,7 +91,7 @@ read the message before processing others. It is necessary to create a non-block
 to add a buffer too. This will be added to a third version of the server.
 
 ### Chat Server Output
-Server output:
+#### Server output:
 ```
 chat_server2$ go run main.go
 kyle has arrived
@@ -109,7 +109,7 @@ Leaving: kyle
 kyle has left
 ```
 
-Client1 output:
+#### Client1 output:
 ```
 $ netcat localhost 8000
 Enter username:
@@ -126,7 +126,7 @@ kyle:bye
 ^C
 ```
 
-Client2 output:
+#### Client2 output:
 ```
 $ netcat localhost 8000
 Enter username:
