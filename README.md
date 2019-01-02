@@ -5,11 +5,11 @@ and quick review of concepts. They will eventually increase in functionality and
 
 ## Table of Contents
 - [Redis Server](#redis-server)
-	- [Brief Analysis](#brief-analysis)
+	- [Redis Server Analysis](#redis-server-analysis)
 - [Chat Server](#chat-server)
-	- [Brief Analysis](#brief-analysis)
-	- [Possible Improvements](#possible-improvements)
-	- [Output](#output)
+	- [Chat Server Analysis](#chat-server-analysis)
+	- [Chat Server Possible Improvements](#chat-server-possible-improvements)
+	- [Chat Server Output](#chat-server-output)
 - [TCP Server](#tcp-server)
 - [Netcat](#netcat)
 
@@ -21,7 +21,7 @@ To avoid that, the second version uses a single goroutine to handle database acc
 and one for each connecting client. The approach uses channel for synchronization which is the typical approach using Golang. 
 I found it very clever and the uses of channels makes the code very easy to read.
 
-### Brief Analysis
+### Redis Server Analysis
 
 ## Chat Server
 This program presents an interesting approach to using channels and a select statement.
@@ -34,17 +34,17 @@ the start.
 There are two versions for this program the first one uses only a string channel for each client, while the second one uses a 
 struct with a communications channel and a string for the name for each client. The background server process is the same for both.
 
-### Brief Analysis
+### Chat Server Analysis
 The core of these programs is a string channel shared between the core chat messaging system and each user. 
 This channel is used for each client to send a message to be broad casted and also for the system to send broadcasted 
 messages to each user. Each client uses two goroutines, one to wait for input and one to display messages sent by the server.
 
-### Possible Improvements
+### Chat Server Possible Improvements
 A slow connection from a client can make the server program to get stuck given that it has to wait for a user client to 
 read the message before processing others. It is necessary to create a non-blocking mechanism to send messages and probably 
 to add a buffer too. This will be added to a third version of the server.
 
-### Output
+### Chat Server Output
 Server output:
 ```
 chat_server2$ go run main.go
