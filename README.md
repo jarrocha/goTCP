@@ -22,6 +22,9 @@ and one for each connecting client. The approach uses channel for synchronizatio
 I found it very clever and the uses of channels makes the code very easy to read.
 
 ### Redis Server Analysis
+The database goroutine resides in the function called `redisServer()` and 
+it uses an unbuffered channel for synchronizing actions with multiple clients. So in theory, 
+that could also be a performance drawback and could be a good starting point for the third version to improve upon.
 
 ## Chat Server
 This program presents an interesting approach to using channels and a select statement.
