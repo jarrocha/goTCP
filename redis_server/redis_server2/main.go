@@ -6,11 +6,11 @@
 	of request. There are two channels used for communication. The first one is used to let the redisServer()
 	function know there is a new command input, the second one is to let the user go routine know there's a result
 	to the request. No matter how many user request are done, there's only one go routine serving all of them at
-	a time. Sort of a desorganized queue. There's no guarantee that if your request arrives second, it will be 
+	a time. Sort of a desorganized queue. There's no guarantee that if your request arrives second, it will be
 	served as second.
 	Improvement:
-	One possible improvement is to have many to many approach and use a channel to avoid race condition on the 
-	go routines performing database access. Specifically for the delete and set commands. 
+	One possible improvement is to have many to many approach and use a channel to avoid race condition on the
+	go routines performing database access. Specifically for the delete and set commands.
 */
 package main
 
@@ -18,9 +18,9 @@ import (
 	"bufio"
 	"flag"
 	"fmt"
+	"io"
 	"log"
 	"net"
-	"io"
 	"strings"
 )
 
@@ -30,7 +30,7 @@ var valInva = "Invalid command\n"
 var valDel = "Value found and deleted\n"
 var valUpd = "Value updated\n"
 var valNew = "New value added\n"
-var valnoSpace ="\n"
+var valnoSpace = "\n"
 
 // Command struct
 type Command struct {
@@ -42,37 +42,37 @@ func redisServer(cmds chan Command) {
 	var db = make(map[string]string, 20)
 	for cmd := range cmds {
 		if len(cmd.Fields) < 2 {
-			cmd.Result<-valInva
+			cmd.Result <- valInva
 			return
 		}
-		
-		switch cmd.Fields[0]{
+
+		switch cmd.Fields[0] {
 		case "get":
 			// GET <KEY>
 			fmt.Println("Performed GET")
 			key := cmd.Fields[1]
-			val, found := db[key] 
+			val, found := db[key]
 			if !found {
-				cmd.Result<-valNotFound
+				cmd.Result <- valNotFound
 				break
 			}
-			cmd.Result<-val
+			cmd.Result <- val + "\n"
 		case "set":
 			// SET <KEY> <VALUE>
 			if len(cmd.Fields) < 3 {
-				cmd.Result<-valInva
+				cmd.Result <- valInva
 				return
 			}
-			
+
 			fmt.Println("Performed SET")
 			key := cmd.Fields[1]
 			val := cmd.Fields[2]
 			_, found := db[key]
 			db[key] = val
 			if found {
-				cmd.Result<-valUpd
+				cmd.Result <- valUpd
 			} else {
-				cmd.Result<-valNew
+				cmd.Result <- valNew
 			}
 		case "del":
 			// DEL <KEY>
@@ -81,12 +81,12 @@ func redisServer(cmds chan Command) {
 			_, found := db[key]
 			if found {
 				delete(db, key)
-				cmd.Result<-valDel
+				cmd.Result <- valDel
 			} else {
-				cmd.Result<-valNotFound
+				cmd.Result <- valNotFound
 			}
 		default:
-			cmd.Result<-valInva
+			cmd.Result <- valInva
 		}
 	}
 }
@@ -105,7 +105,7 @@ func connHandle(commands chan Command, conn net.Conn) {
 		cmds := strings.Fields(rawcmds)
 
 		result := make(chan string)
-		commands <- Command {
+		commands <- Command{
 			Fields: cmds,
 			Result: result,
 		}
