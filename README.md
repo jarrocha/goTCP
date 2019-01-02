@@ -4,7 +4,7 @@ This is a collection of small programs written in Golang. These projects are her
 and quick review of concepts. They will eventually increase in functionality and move to their own repository.
 
 ## Table of Contents
-- [Chat Server](#Chat Server)
+- [Chat Server](#chat-server)
 
 
 
