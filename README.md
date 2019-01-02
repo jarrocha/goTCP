@@ -7,6 +7,7 @@ and quick review of concepts. They will eventually increase in functionality and
 - [Chat Server](#chat-server)
 	- [Brief Analysis](#brief-analysis)
 	- [Possible Improvements](#possible-improvements)
+	- [Output](#output)
 - [Netcat](#netcat)
 - [Redis Server](#redis-server)
 - [TCP Server](#tcp-server)
@@ -35,7 +36,7 @@ read the message before processing others. It is necessary to create a non-block
 to add a buffer too. This will be added to a third version of the server.
 
 ### Output
-Server Output:
+Server output:
 ```
 chat_server2$ go run main.go
 kyle has arrived
@@ -53,6 +54,37 @@ Leaving: kyle
 kyle has left
 ```
 
+Client1 output:
+```
+$ netcat localhost 8000
+Enter username:
+kyle
+john has arrived
+john:hello
+hello john, you okay?
+kyle:hello john, you okay?
+john:im good, thanks
+john:bye
+john has left
+bye
+kyle:bye
+^C
+```
+
+Client2 output:
+```
+$ netcat localhost 8000
+Enter username:
+john
+hello
+john:hello
+kyle:hello john, you okay?
+im good, thanks
+john:im good, thanks
+bye
+john:bye
+^C
+```
 
 ## Netcat
 
