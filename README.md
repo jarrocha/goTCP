@@ -23,18 +23,18 @@ To avoid that, the second version uses a single goroutine to handle database acc
 and one for each connecting client. The approach uses channel for synchronization which is the typical approach using Golang. 
 I found it very clever and the uses of channels makes the code very easy to read.
 
-### Redis Server Analysis
+### Analysis
 The database goroutine resides in the function called `redisServer()` and 
 it uses an unbuffered channel for synchronizing actions with multiple clients. So in theory, 
 that could also be a performance drawback and could be a good starting point for the third version to improve upon.
 
-### Redis Server Possible Improvements
+### Possible Improvements
 Use multiple goroutines accessing the database to better scaling and use unbuffered channels to synchronize write 
 and delete access to the database between them. No synchronization is needed for read access.
 Develop a program to simulate thousands clients with preset amount random commands. Measure the time of response 
 for each transaction and obtain a final average.
 
-### Redis Server Output
+### Output
 #### Server output:
 ```
 redis_server2$ go run main.go
@@ -80,17 +80,17 @@ the start.
 There are two versions for this program the first one uses only a string channel for each client, while the second one uses a 
 struct with a communications channel and a string for the name for each client. The background server process is the same for both.
 
-### Chat Server Analysis
+### Analysis
 The core of these programs is a string channel shared between the core chat messaging system and each user. 
 This channel is used for each client to send a message to be broad casted and also for the system to send broadcasted 
 messages to each user. Each client uses two goroutines, one to wait for input and one to display messages sent by the server.
 
-### Chat Server Possible Improvements
+### Possible Improvements
 A slow connection from a client can make the server program to get stuck given that it has to wait for a user client to 
 read the message before processing others. It is necessary to create a non-blocking mechanism to send messages and probably 
 to add a buffer too. This will be added to a third version of the server.
 
-### Chat Server Output
+### Output
 #### Server output:
 ```
 chat_server2$ go run main.go
