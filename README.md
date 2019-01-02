@@ -5,6 +5,9 @@ and quick review of concepts. They will eventually increase in functionality and
 
 ## Table of Contents
 - [Chat Server](#chat-server)
+- [Netcat](#netcat)
+- [Redis Server](#redis-server)
+- [TCP Server](#tcp-server)
 
 
 
@@ -17,3 +20,46 @@ and quick review of concepts. They will eventually increase in functionality and
 
 
 ## Chat Server
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Netcat
+
+
+
+
+
+
+
+
+
+
+
+
+## Redis Server
+
+
+
+
+
+
+
+
+
+
+
+
+## TCP Server
