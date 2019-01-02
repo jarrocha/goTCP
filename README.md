@@ -30,6 +30,10 @@ the start.
 There are two versions for this program the first one uses only a string channel for each client, while the second one uses a 
 struct with a communications channel and a string for the name for each client. The background server process is the same for both.
 
+### Brief Analysis
+The core of these programs is a string channel shared between the core chat messaging system and each user. 
+This channel is used for each client to send a message to be broad casted and also for the system to send broadcasted 
+messages to each user. Each client uses two goroutines, one to wait for input and one to display messages sent by the server.
 
 
 
