@@ -5,6 +5,8 @@ and quick review of concepts. They will eventually increase in functionality and
 
 ## Table of Contents
 - [Chat Server](#chat-server)
+	- [Brief Analysis](#brief-analysis)
+	- [Possible Improvements](#possible-improvements)
 - [Netcat](#netcat)
 - [Redis Server](#redis-server)
 - [TCP Server](#tcp-server)
